@@ -1,0 +1,36 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "MolMason RoutePlan",
+  "description": "Synthesis route plan (schema-first canonical format)",
+  "type": "object",
+  "required": ["id", "target_smiles", "steps"],
+  "properties": {
+    "id": {"type": "string"},
+    "target_smiles": {"type": "string"},
+    "steps": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "step_id": {"type": "string"},
+          "reaction_smiles": {"type": "string"},
+          "reagents": {"type": "array", "items": {"type": "string"}},
+          "conditions": {"type": "object"},
+          "yield_estimate": {"type": "object", "properties": {
+            "p10": {"type": "number"},
+            "p50": {"type": "number"},
+            "p90": {"type": "number"}
+          }}
+        }
+      }
+    },
+    "provenance": {
+      "type": "object",
+      "properties": {
+        "generator_id": {"type": "string"},
+        "timestamp": {"type": "number"},
+        "audit_hash": {"type": "string"}
+      }
+    }
+  }
+}

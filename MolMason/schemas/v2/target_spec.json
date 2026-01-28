@@ -1,0 +1,22 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "MolMason TargetSpec",
+  "description": "Target specification for molecule generation",
+  "type": "object",
+  "properties": {
+    "property_targets": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "properties": {
+          "min": {"type": "number"},
+          "max": {"type": "number"},
+          "target": {"type": "number"},
+          "priority": {"type": "string", "enum": ["high", "medium", "low"]}
+        }
+      }
+    },
+    "constraints": {"type": "array", "items": {"type": "string"}},
+    "objectives": {"type": "array", "items": {"type": "string"}}
+  }
+}

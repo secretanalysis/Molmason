@@ -1,0 +1,50 @@
+name: MolMason CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  python-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      
+      - name: Install dependencies
+        run: |
+          cd python-engine
+          pip install -e ".[test]"
+      
+      - name: Run tests
+        run: |
+          cd python-engine
+          pytest tests/ -v
+      
+      - name: Test RPC ping
+        run: |
+          cd python-engine
+          echo '{"jsonrpc":"2.0","id":1,"method":"ping","params":{}}' | python -m molmason_engine.server | grep -q '"status":"ok"'
+
+  chemical-gates:
+    runs-on: ubuntu-latest
+    if: false  # Enable when generators implemented
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Set up conda
+        uses: conda-incubator/setup-miniconda@v3
+        with:
+          python-version: '3.11'
+      
+      - name: Install RDKit
+        run: conda install -c conda-forge rdkit
+      
+      - name: Run chemical gates
+        run: ./tools/benchmarks/run_gates.sh test_output.sdf --phase 1

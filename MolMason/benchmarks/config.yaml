@@ -1,0 +1,26 @@
+# MolMason Chemical Gate Configuration
+phase: 1
+
+moses:
+  reference_set: "reference_smiles.txt"
+  phase_1:
+    validity: {threshold: 0.99, gate_type: hard_fail}
+    uniqueness: {threshold: 0.95, gate_type: hard_fail}
+    novelty: {threshold: 0.70, gate_type: warn}
+  phase_2:
+    validity: {threshold: 0.99, gate_type: hard_fail}
+    uniqueness: {threshold: 0.95, gate_type: hard_fail}
+    novelty: {threshold: 0.80, gate_type: hard_fail}
+
+guacamol:
+  tasks: [isomers_c7h8n2o2, median_1, osimertinib_mpo]
+  phase_1:
+    goal_directed: {threshold: 0.50, gate_type: warn}
+  phase_2:
+    goal_directed: {threshold: 0.70, gate_type: hard_fail}
+
+properties:
+  enabled: false
+  phase_2:
+    logp_rmse: {threshold: 0.20, gate_type: hard_fail}
+    tpsa_rmse: {threshold: 0.20, gate_type: hard_fail}

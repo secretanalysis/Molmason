@@ -1,0 +1,38 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+dist/
+eggs/
+*.egg-info/
+*.egg
+.venv/
+venv/
+
+# Rust
+target/
+Cargo.lock
+
+# Qt
+*.pro.user
+moc_*.cpp
+qrc_*.cpp
+build-*/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# MolMason
+.molmason/
+*.sdf
+*.mol
+*.mol2
+!test_vectors/*.sdf
+!benchmarks/*.sdf
