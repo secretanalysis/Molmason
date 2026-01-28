@@ -8,7 +8,9 @@ int main(int argc, char *argv[]) {
     app.setOrganizationName("KingCermak");
     
     QQmlApplicationEngine engine;
-    engine.load(QUrl(QStringLiteral("qrc:/MolMason/src/qml/App.qml")));
+    engine.load(QUrl(QStringLiteral("qrc:/qt/qml/MolMason/App.qml")));
+    if (engine.rootObjects().isEmpty())
+    return -1;
     
     return app.exec();
 }
